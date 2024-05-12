@@ -11,9 +11,9 @@ const Paths = () => {
         <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<PageLayout />}>
-                        <Route path="/informacoes" element={<Informacoes />} />
+                        <Route index element={<Ingressos />} />
                         <Route path="/eventos" element={<Eventos />} />
-                        <Route path="/ingressos" element={<Ingressos />} />
+                        <Route path="/informacoes" element={<Informacoes />} />
                     </Route>
                     <Route path={"*"} element={<NotFound />} />
                 </Routes>

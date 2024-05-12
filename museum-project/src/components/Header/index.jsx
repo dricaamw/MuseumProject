@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
-  background-color: black;
+  background-color: #00000086;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
     gap: 150px;
     align-items: center;
     & img{
-    max-width: 200px;
+    max-width: 300px;
     }
     & ul {
       display: flex;
@@ -48,26 +48,28 @@ const HeaderContainer = styled.header`
       }
     }
   } 
+}
 `;
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <nav>
-        <img src="../images/logo-museu.png" alt="logo museu" />
-        <ul>
-          <li>
-            <NavLink to={"/"}>Informações</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/eventos"}>Eventos</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/ingressos"}>Ingressos</NavLink>
-          </li>
-        </ul>
-      </nav>
-     
+      <div>
+        <nav>
+          <img src="../images/logoMuseu.png" alt="logo museu" />
+          <ul>
+            <li>
+              <NavLink to={"/"}>Ingressos</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/eventos"}>Eventos</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/ingressos"}>Informações</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </HeaderContainer>
   );
 };
