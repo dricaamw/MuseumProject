@@ -16,8 +16,8 @@ const Paths = () => {
                         <Route path="/cadastro" element={<Cadastro />} />
                         <Route path="/ingressos" element={<Ingressos />} />
                         <Route path="/informacoes" element={<Informacoes />} />
+                        <Route path={"*"} element={<NotFound />} />
                     </Route>
-                    <Route path={"*"} element={<NotFound />} />
                 </Routes>
             </BrowserRouter>         
         </>
