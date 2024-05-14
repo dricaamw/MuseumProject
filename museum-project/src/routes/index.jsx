@@ -1,9 +1,10 @@
 import Informacoes from "../pages/SitePages/Informacoes";
+import Cadastro from "../pages/SitePages/Cadastro";
 import Ingressos from "../pages/SitePages/Ingressos";
-import Eventos from "../pages/SitePages/Eventos";
 import NotFound from "../pages/SitePages/NotFound";
 import PageLayout from "../layout/PageLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "../pages/SitePages/Home";
 
 const Paths = () => {
     return ( 
@@ -11,8 +12,9 @@ const Paths = () => {
         <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<PageLayout />}>
-                        <Route index element={<Ingressos />} />
-                        <Route path="/eventos" element={<Eventos />} />
+                        <Route index element={<Home />} />
+                        <Route path="/cadastro" element={<Cadastro />} />
+                        <Route path="/ingressos" element={<Ingressos />} />
                         <Route path="/informacoes" element={<Informacoes />} />
                         <Route path={"*"} element={<NotFound />} />
                     </Route>

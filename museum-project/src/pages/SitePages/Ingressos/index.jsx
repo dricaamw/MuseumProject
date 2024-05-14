@@ -1,5 +1,6 @@
 import { Button } from "primereact/button";
 import styled from "styled-components";
+import "primeicons/primeicons.css";
 
 const Ingressos = () => {
     
