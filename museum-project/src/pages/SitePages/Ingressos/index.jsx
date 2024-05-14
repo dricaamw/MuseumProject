@@ -1,6 +1,9 @@
+import { Button } from "primereact/button";
 import styled from "styled-components";
 
-const ButtonContainer = styled.button`
+const Ingressos = () => {
+    
+    const ButtonContainer = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
@@ -9,7 +12,6 @@ margin: auto;
         display: flex;
         align-content: center;
         justify-content: center;
-        background-color: black;
         color: white; 
         width: 250px;
         height: 60px;
@@ -21,14 +23,13 @@ margin: auto;
         font-size: 18px;        
     }
 `;
+        
 
-const Ingressos = () => {
   return (
     <ButtonContainer>
-        <div>
-            <button>Adquira seu ingresso</button>
-        </div>
-        
+    <div>
+        <Button label="Adquira seu Ingresso" />
+    </div>
     </ButtonContainer>
   );
 };
