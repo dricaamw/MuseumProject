@@ -61,7 +61,7 @@ const NotFound = () => {
 
     const footer = (
         <ButtonContainer>
-            <Button label="Página Inicial" icon="pi pi-refresh" onClick={() =>  window.open('/', '_self')} />
+            <Button label="Página Inicial aa" icon="pi pi-refresh" onClick={() =>  window.open('/', '_self')} />
         </ButtonContainer>
     )
 
