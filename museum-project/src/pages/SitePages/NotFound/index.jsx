@@ -69,7 +69,7 @@ const NotFound = () => {
         // <NotFoundContainer>
         <div className="flex align-items-center justify-content-center m-6">
 
-            <Card title='Erro 404' subTitle='Página Não Encontrada!' footer={footer} className='w-5 flex align-items-center justify-content-center text-center'/>
+            <Card title='Erro 404' subTitle='Página Não Encontrada! batata' footer={footer} className='w-5 flex align-items-center justify-content-center text-center'/>
             
         </div>
         
