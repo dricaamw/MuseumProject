@@ -3,34 +3,32 @@ import styled from "styled-components";
 import "primeicons/primeicons.css";
 
 const Ingressos = () => {
-    
-    const ButtonContainer = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-margin: auto;
+  const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     & div {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        color: white; 
-        width: 250px;
-        height: 60px;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      color: white;
+      width: 250px;
+      height: 60px;
     }
-    
-    & button{
-        background-color: black;
-        color: white;
-        font-size: 18px;        
+
+    & button {
+      background-color: black;
+      color: white;
+      font-size: 18px;
     }
-`;
-        
+  `;
 
   return (
     <ButtonContainer>
-    <div>
+      <div>
         <Button label="Adquira seu Ingresso" />
-    </div>
+      </div>
     </ButtonContainer>
   );
 };
