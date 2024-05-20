@@ -16,12 +16,12 @@ const MenuBarContainer = styled.header`
     `
 
 const Header = () => {
-  
+
   const itens = [
     {
       label: 'Home',
       icon: 'pi pi-home',
-      url: '/'
+      url: '/cadastro'
     },
     {
       label: 'Cadastro',
@@ -40,13 +40,12 @@ const Header = () => {
     },
   ]
 
-  const start = <img alt="logo" src="../images/logoMuseu.png" width={300} />
+const start = <a href="/"><img alt="logo" src="../images/logoMuseu.png" width={300} /> </a>
 
   return (
     <MenuBarContainer>
         <Menubar className="flex justify-content-evenly" start={start} model={itens}/>
     </MenuBarContainer>
-
   );
 };
 export default Header;
