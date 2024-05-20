@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
-const InformacoesContainer = styled.div`
-
+const SectionContainer = styled.section`
+  text-align: center;
+  background-color: #b29885;
+  width: 200px;
 `;
 
 const Informacoes = () => {
   return (
-    <h1>informações</h1>
+    <SectionContainer>
+      <h1>Informações</h1>
+    </SectionContainer>
   );
 };
 
