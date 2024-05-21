@@ -4,10 +4,29 @@ import styled from "styled-components";
 import { useState } from "react";
 import { FloatLabel } from "primereact/floatlabel";
 import { Dropdown } from "primereact/dropdown";
+import { Calendar } from "primereact/calendar";
+import { locale, addLocale, updateLocaleOption, updateLocaleOptions, localeOption, localeOptions } from "primereact/api";
+import axios from 'axios'
 
-const FormContainer = styled.form``;
+
 
 const Cadastro = () => {
+
+  const FormContainer = styled.form``;
+  
+  const [date, setDate] = useState(null);
+  addLocale('pt-br', {
+    firstDayOfWeek: 1,
+    dayNames: ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'],
+    dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
+    dayNamesMin: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'],
+    monthNames: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+    monthNamesShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+    today: 'Hoje',
+    clear: 'Limpar',
+    
+  });
+  
   const [genderSelected, setGenderSelected] = useState(null);
   const genders = [
     { name: "Masculino", code: "MASC" },
@@ -15,9 +34,18 @@ const Cadastro = () => {
     { name: "Outro", code: "OUTR" },
     { name: "Prefiro não Informar", code: "PNIN" },
   ];
-
-  const [checked, setChecked] = useState(false);
-
+  
+  const getEstado = () => {
+    axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios`)
+    .then(res => {
+      res.map(e => {e.microrregiao.mesorregiao.UF.nome}).push(state)
+    })
+  }
+  
+  getEstado()
+  const [estadoSelected, setEstadoSelected] = useState(null);
+  let state = []
+  
   return (
     <FormContainer className="flex align-items-center justify-content-center mt-5">
       <div className="p-4 shadow-2 border-round-xl w-full lg:w-6 bg-black-alpha-80">
@@ -32,28 +60,42 @@ const Cadastro = () => {
         <div>
           <div className="flex justify-content-between align-items-center mb-3 gap-3">
             <FloatLabel className="w-12">
-              <label htmlFor="email" className="block text-900 font-medium">
+              <label htmlFor="email" className="text-900 font-medium">
                 Nome Completo
               </label>
               <InputText id="nomeCompleto" type="text" placeholder="Insira seu nome" className="w-12" />
             </FloatLabel>
 
             <FloatLabel className="w-12">
-              <label htmlFor="email" className="block text-900 font-medium">
+              <label htmlFor="email" className="text-900 font-medium">
                 Email
               </label>
               <InputText id="email" type="text" placeholder="Endereço de Email" className="w-12" />
             </FloatLabel>
           </div>
 
-          <label htmlFor="password" className="block text-900 font-medium">
-            Senha
-          </label>
-          <InputText id="password" type="password" placeholder="senha" className="w-full mb-5" />
+          <FloatLabel className="w-12">
+            <InputText id="job" type="text" placeholder="Insira sua Profissão" className="w-full" />
+            <label htmlFor="job" className="text-900 font-medium">
+              Profissão
+            </label>
+          </FloatLabel>
 
           <FloatLabel className="w-12">
-            <Dropdown inputId="st-gender" value={genderSelected} onChange={(e) => setGenderSelected(e.value)} options={genders} optionLabel="name" placeholder="Selecione um Gênero" className="w-20rem" />
-            <label htmlFor="st-gender">Gênero</label>
+            <Dropdown id="st-gender" value={genderSelected} onChange={(e) => setGenderSelected(e.value)} options={genders} optionLabel="name" placeholder="Selecione um Gênero" className="w-20rem" />
+            <label htmlFor="st-gender" className="text-900 font-medium">
+              Gênero
+            </label>
+          </FloatLabel>
+
+          <FloatLabel className="w-12">
+            <Calendar id="dataNascimento" value={date} onChange={(e) => setDate(e.value)} dateFormat="dd/mm/yy" locale="pt-br" showButtonBar showIcon/>
+            <label htmlFor="dataNascimento"></label>
+          </FloatLabel>
+
+          <FloatLabel className='w-12'>
+            <Dropdown id="estado" value={estadoSelected} onChange={(e) => setEstadoSelected(e.value)} options={state} placeholder="Selecione um Estado" className="w-20rem"/>
+            <label htmlFor="estado"></label>
           </FloatLabel>
 
           <div className="flex align-items-center justify-content-between mb-6">
