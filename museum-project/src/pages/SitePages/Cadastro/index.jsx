@@ -1,7 +1,7 @@
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FloatLabel } from "primereact/floatlabel";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
@@ -71,21 +71,17 @@ const Cadastro = () => {
     { name: "Outro", code: "OUTR" },
     { name: "Prefiro não Informar", code: "PNIN" },
   ];
-
+  const [estados, setEstados] = useState([]);
   const getEstado = async () => {
-    axios
-      .get(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios`)
-      .then((res) => {
-        let batata = res.data.map((e) => e.microrregiao.mesorregiao.UF.nome)
-        batata.push(state)
-        // let state = []
-        console.log(batata);
-      });
+    const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios`)
+    setEstados([...response.data.map((e) => e.microrregiao.mesorregiao.UF.nome)]);
   };
-
-  getEstado();
+  useEffect(() => {
+    getEstado();
+  }, [])
+  console.log(estados && estados);
+  
   const [estadoSelected, setEstadoSelected] = useState(null);
-  let state = [];
 
   return (
     <FormContainer className="flex align-items-center justify-content-center mt-5">
@@ -177,7 +173,7 @@ const Cadastro = () => {
               id="estado"
               value={estadoSelected}
               onChange={(e) => setEstadoSelected(e.value)}
-              options={state}
+              options={estados}
               placeholder="Selecione um Estado"
               className="w-20rem"
             />
