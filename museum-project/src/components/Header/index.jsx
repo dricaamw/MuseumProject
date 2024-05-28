@@ -41,11 +41,12 @@ const MenuBarContainer = styled.header`
 `;
 
 const Header = () => {
+
   const itens = [
     {
-      label: "Home",
-      icon: "pi pi-home",
-      url: "/",
+      label: 'Home',
+      icon: 'pi pi-home',
+      url: '/'
     },
     {
       label: "Cadastro",
@@ -62,7 +63,9 @@ const Header = () => {
       icon: "pi pi-info-circle",
       url: "/informações",
     },
-  ];
+  ]
+
+const start = <a href="/"><img alt="logo" src="../images/logoMuseu.png" width={300} /> </a>
 
   return (
     <MenuBarContainer>

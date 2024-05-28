@@ -2,27 +2,34 @@ import styled from "styled-components";
 import { Button } from 'primereact/button';
 import { Card } from "primereact/card";
 
-const ButtonContainer = styled.div`
-    & Button{
-        background-color: black;
+const NotFoundContainer = styled.div`
+
+    & div .flex{
+        background-color: #000000d8;
     }
-`
+        `
+
+const ButtonContainer = styled.div``
 
 const NotFound = () => {
 
     const footer = (
         <ButtonContainer>
-            <Button label="Página Inicial aa" icon="pi pi-refresh" onClick={() =>  window.open('/', '_self')} />
+            <Button label="Página Inicial" icon="pi pi-refresh" onClick={() =>  window.open('/', '_self')}  />
         </ButtonContainer>
     )
 
     return ( 
+        <NotFoundContainer>
+            
         <div className="flex align-items-center justify-content-center m-6">
 
-            <Card title='Erro 404' subTitle='Página Não Encontrada! b' footer={footer} className='w-5 flex align-items-center justify-content-center text-center'/>
+            <Card title='Erro 404' subTitle='Página Não Encontrada!' footer={footer} className='w-5 flex align-items-center justify-content-center text-center'/>
             
         </div>
-     );
+        
+        </NotFoundContainer>
+        );
 }
- 
+
 export default NotFound;
