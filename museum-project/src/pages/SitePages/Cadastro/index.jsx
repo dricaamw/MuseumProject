@@ -92,21 +92,23 @@ const Cadastro = () => {
   }, []);
   const [estadoSelected, setEstadoSelected] = useState(null);
 
+  // {}
+
   const [cidades, setCidades] = useState([]);
-  const getCidade = async () => {
+   async function getCidade (id) {
     const response = await axios.get(
-      `https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome`
+      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/municipios`
     );
     await setCidades([
       ...response.data.map((e) => {
         return (e = {
           name: `${e.nome}`
         });
-      }),
+      })
     ]);
   };
   useEffect(() => {
-    getCidade();
+    getCidade(estadoSelected.code);
   }, []);
   const [cidadeSelected, setCidadeSelected] = useState(null);
 
