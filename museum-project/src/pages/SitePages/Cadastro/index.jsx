@@ -18,6 +18,8 @@ import axios from "axios";
 const Cadastro = () => {
   const FormContainer = styled.form``;
 
+
+// isso controla a data
   const [date, setDate] = useState(null);
   addLocale("pt-br", {
     firstDayOfWeek: 1,
@@ -64,6 +66,8 @@ const Cadastro = () => {
     clear: "Limpar",
   });
 
+
+// isso controla os generos
   const [genderSelected, setGenderSelected] = useState(null);
   const genders = [
     { name: "Masculino", code: "MASC" },
@@ -71,6 +75,9 @@ const Cadastro = () => {
     { name: "Outro", code: "OUTR" },
     { name: "Prefiro não Informar", code: "PNIN" },
   ];
+
+
+// isso controla os estados
   const [estados, setEstados] = useState([]);
   const getEstado = async () => {
     const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios`)
@@ -80,8 +87,8 @@ const Cadastro = () => {
     getEstado();
   }, [])
   console.log(estados && estados);
-  
   const [estadoSelected, setEstadoSelected] = useState(null);
+
 
   return (
     <FormContainer className="flex align-items-center justify-content-center mt-5">
