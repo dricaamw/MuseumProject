@@ -18,8 +18,6 @@ import axios from "axios";
 const Cadastro = () => {
   const FormContainer = styled.form``;
 
-
-// isso controla a data
   const [date, setDate] = useState(null);
   addLocale("pt-br", {
     firstDayOfWeek: 1,
@@ -96,12 +94,13 @@ const Cadastro = () => {
   }, []);
   const [estadoSelected, setEstadoSelected] = useState(null);
 
-  const [cidades, setCidades] = useState([]);
-  const getCidade = async () => {
+  const [cidades, setCidades] = useState();
+  async function getCidade (code) {
+    console.log(code.code);
     const response = await axios.get(
-      `https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome`
+      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${code.code}/municipios`
     );
-    await setCidades([
+      setCidades([
       ...response.data.map((e) => {
         return (e = {
           name: `${e.nome}`
@@ -110,12 +109,14 @@ const Cadastro = () => {
     ]);
   };
   useEffect(() => {
-    getCidade();
-  }, []);
+    setCidades(null);
+    setCidadeSelected(null);
+    getCidade(estadoSelected);
+  }, [estadoSelected]);
   const [cidadeSelected, setCidadeSelected] = useState(null);
 
   return (
-    <FormContainer className="flex align-items-center justify-content-center mt-5">
+    <FormContainer className="flex align-items-center justify-content-center mt-5 mb-5">
       <div className="p-4 shadow-2 border-round-xl w-full lg:w-6 bg-black-alpha-80">
         <div className="text-center mb-5">
           <div className="text-900 text-3xl font-medium mb-3">
