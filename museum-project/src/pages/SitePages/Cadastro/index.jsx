@@ -64,6 +64,8 @@ const Cadastro = () => {
     clear: "Limpar",
   });
 
+
+// isso controla os generos
   const [genderSelected, setGenderSelected] = useState(null);
 
   const genders = [
@@ -92,14 +94,13 @@ const Cadastro = () => {
   }, []);
   const [estadoSelected, setEstadoSelected] = useState(null);
 
-  // {}
-
-  const [cidades, setCidades] = useState([]);
-   async function getCidade (id) {
+  const [cidades, setCidades] = useState();
+  async function getCidade (code) {
+    console.log(code.code);
     const response = await axios.get(
-      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/municipios`
+      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${code.code}/municipios`
     );
-    await setCidades([
+      setCidades([
       ...response.data.map((e) => {
         return (e = {
           name: `${e.nome}`
@@ -108,12 +109,14 @@ const Cadastro = () => {
     ]);
   };
   useEffect(() => {
-    getCidade(estadoSelected.code);
-  }, []);
+    setCidades(null);
+    setCidadeSelected(null);
+    getCidade(estadoSelected);
+  }, [estadoSelected]);
   const [cidadeSelected, setCidadeSelected] = useState(null);
 
   return (
-    <FormContainer className="flex align-items-center justify-content-center mt-5">
+    <FormContainer className="flex align-items-center justify-content-center mt-5 mb-5">
       <div className="p-4 shadow-2 border-round-xl w-full lg:w-6 bg-black-alpha-80">
         <div className="text-center mb-5">
           <div className="text-900 text-3xl font-medium mb-3">
@@ -131,7 +134,7 @@ const Cadastro = () => {
         </div>
 
         <div>
-          <div className="flex justify-content-between align-items-center mb-3 gap-3">
+          <div className="flex justify-content-between align-items-center mb-5 gap-3">
             <FloatLabel className="w-12">
               <label htmlFor="email" className="text-900 font-medium">
                 Nome Completo
@@ -157,7 +160,8 @@ const Cadastro = () => {
             </FloatLabel>
           </div>
 
-          <FloatLabel className="w-12">
+          <div className="flex justify-content-between align-items-center mb-5 gap-3">
+          <FloatLabel className="w-7">
             <Dropdown
               id="st-gender"
               value={genderSelected}
@@ -165,14 +169,29 @@ const Cadastro = () => {
               options={genders}
               optionLabel="name"
               placeholder="Selecione um Gênero"
-              className="w-20rem"
+              className="w-15rem"
             />
             <label htmlFor="st-gender" className="text-900 font-medium">
               Gênero
             </label>
           </FloatLabel>
 
-          <FloatLabel className="w-12">
+          <FloatLabel className="w-7">
+            <Calendar
+              id="dataNascimento"
+              value={date}
+              onChange={(e) => setDate(e.value)}
+              dateFormat="dd/mm/yy"
+              locale="pt-br"
+              placeholder="Quando você nasceu?"
+              showButtonBar
+              showIcon
+              className="w-15rem"
+            />
+            <label htmlFor="dataNascimento" className="text-900 font-medium">Data de Nascimento</label>
+          </FloatLabel>
+
+          <FloatLabel className="w-7">
             <InputText
               id="job"
               type="text"
@@ -183,20 +202,8 @@ const Cadastro = () => {
               Profissão
             </label>
           </FloatLabel>
+          </div>
 
-          <FloatLabel className="w-12">
-            <Calendar
-              id="dataNascimento"
-              value={date}
-              onChange={(e) => setDate(e.value)}
-              dateFormat="dd/mm/yy"
-              locale="pt-br"
-              placeholder="Quando você nasceu?"
-              showButtonBar
-              showIcon
-            />
-            <label htmlFor="dataNascimento" className="text-900 font-medium">Data de Nascimento</label>
-          </FloatLabel>
 
           <FloatLabel className="w-12">
             <Dropdown
