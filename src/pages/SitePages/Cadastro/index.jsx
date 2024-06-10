@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FloatLabel } from "primereact/floatlabel";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
+import { InputMask } from 'primereact/inputmask';
 import {
   locale,
   addLocale,
@@ -73,6 +74,8 @@ const Cadastro = () => {
     { name: "Outro", code: "OUTR" },
     { name: "Prefiro não Informar", code: "PNIN" },
   ];
+
+  const [cpfValue, setCpfValue] = useState();
 
   const [estados, setEstados] = useState([]);
   const getEstado = async () => {
@@ -193,13 +196,14 @@ const Cadastro = () => {
             </FloatLabel>
 
             <FloatLabel className="w-7">
-              <InputText
+              <InputMask
                 id="cpf"
-                type="text"
-                placeholder="Insira seu CPF"
+                mask= "999 . 999 . 999 - 99"
+                // placeholder="Insira seu CPF"
+                slotChar="___ . ___ . ___ - __"
                 className="w-12"
               />
-              <label htmlFor="job" className="text-900 font-medium">
+              <label htmlFor="cpf" className="text-900 font-medium">
                 CPF
               </label>
             </FloatLabel>
@@ -227,9 +231,7 @@ const Cadastro = () => {
               <Dropdown
                 id="cidade"
                 value={cidadeSelected}
-                onChange={(e) => {
-                  return setCidadeSelected(e.value);
-                }}
+                onChange={(e) => setCidadeSelected(e.value)}
                 options={cidades}
                 optionLabel="name"
                 placeholder="Selecione uma cidade"
