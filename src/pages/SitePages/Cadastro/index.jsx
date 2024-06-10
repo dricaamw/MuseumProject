@@ -64,8 +64,7 @@ const Cadastro = () => {
     clear: "Limpar",
   });
 
-
-// isso controla os generos
+  // isso controla os generos
   const [genderSelected, setGenderSelected] = useState(null);
 
   const genders = [
@@ -95,19 +94,19 @@ const Cadastro = () => {
   const [estadoSelected, setEstadoSelected] = useState(null);
 
   const [cidades, setCidades] = useState();
-  async function getCidade (code) {
+  async function getCidade(code) {
     console.log(code.code);
     const response = await axios.get(
       `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${code.code}/municipios`
     );
-      setCidades([
+    setCidades([
       ...response.data.map((e) => {
         return (e = {
-          name: `${e.nome}`
+          name: `${e.nome}`,
         });
       }),
     ]);
-  };
+  }
   useEffect(() => {
     setCidades(null);
     setCidadeSelected(null);
@@ -134,7 +133,7 @@ const Cadastro = () => {
         </div>
 
         <div>
-          <div className="flex justify-content-between align-items-center mb-3 gap-3">
+          <div className="flex justify-content-between align-items-center mb-5 gap-3">
             <FloatLabel className="w-12">
               <label htmlFor="email" className="text-900 font-medium">
                 Nome Completo
@@ -160,77 +159,87 @@ const Cadastro = () => {
             </FloatLabel>
           </div>
 
-          <FloatLabel className="w-12">
-            <Dropdown
-              id="st-gender"
-              value={genderSelected}
-              onChange={(e) => setGenderSelected(e.value)}
-              options={genders}
-              optionLabel="name"
-              placeholder="Selecione um Gênero"
-              className="w-20rem"
-            />
-            <label htmlFor="st-gender" className="text-900 font-medium">
-              Gênero
-            </label>
-          </FloatLabel>
+          <div className="flex justify-content-between align-items-center mb-5 gap-3">
+            <FloatLabel className="w-7">
+              <Dropdown
+                id="st-gender"
+                value={genderSelected}
+                onChange={(e) => setGenderSelected(e.value)}
+                options={genders}
+                optionLabel="name"
+                placeholder="Selecione um Gênero"
+                className="w-auto"
+              />
+              <label htmlFor="st-gender" className="text-900 font-medium">
+                Gênero
+              </label>
+            </FloatLabel>
 
-          <FloatLabel className="w-12">
-            <InputText
-              id="job"
-              type="text"
-              placeholder="Insira sua Profissão"
-              className="w-full"
-            />
-            <label htmlFor="job" className="text-900 font-medium">
-              Profissão
-            </label>
-          </FloatLabel>
+            <FloatLabel className="w-7">
+              <Calendar
+                id="dataNascimento"
+                value={date}
+                onChange={(e) => setDate(e.value)}
+                dateFormat="dd/mm/yy"
+                locale="pt-br"
+                placeholder="Quando você nasceu?"
+                showButtonBar
+                showIcon
+                className="w-auto"
+              />
+              <label htmlFor="dataNascimento" className="text-900 font-medium">
+                Nascimento
+              </label>
+            </FloatLabel>
 
-          <FloatLabel className="w-12">
-            <Calendar
-              id="dataNascimento"
-              value={date}
-              onChange={(e) => setDate(e.value)}
-              dateFormat="dd/mm/yy"
-              locale="pt-br"
-              placeholder="Quando você nasceu?"
-              showButtonBar
-              showIcon
-            />
-            <label htmlFor="dataNascimento" className="text-900 font-medium">Data de Nascimento</label>
-          </FloatLabel>
+            <FloatLabel className="w-7">
+              <InputText
+                id="cpf"
+                type="text"
+                placeholder="Insira seu CPF"
+                className="w-12"
+              />
+              <label htmlFor="job" className="text-900 font-medium">
+                CPF
+              </label>
+            </FloatLabel>
+          </div>
 
-          <FloatLabel className="w-12">
-            <Dropdown
-              id="estado"
-              value={estadoSelected}
-              onChange={(e) => {
-                return (setEstadoSelected(e.target.value))}}
-              options={estados}
-              optionLabel="name"
-              placeholder="Selecione um Estado"
-              className="w-20rem"
-            />
-            <label htmlFor="estado" className="text-900 font-medium">
-              Estado de Origem
-            </label>
-          </FloatLabel>
-          
-          <FloatLabel className="w-12">
-            <Dropdown
-              id="cidade"
-              value={cidadeSelected}
-              onChange={(e) => {return (setCidadeSelected(e.value))}}
-              options={cidades}
-              optionLabel="name"
-              placeholder="Selecione uma cidade"
-              className="w-20rem"
-            />
-            <label htmlFor="cidade" className="text-900 font-medium">
-              Cidade de Origem
-            </label>
-          </FloatLabel>
+          <div className="flex justify-content-between align-items-center mb-5 gap-3">
+            <FloatLabel className="w-12">
+              <Dropdown
+                id="estado"
+                value={estadoSelected}
+                onChange={(e) => {
+                  return setEstadoSelected(e.target.value);
+                }}
+                options={estados}
+                optionLabel="name"
+                placeholder="Selecione um Estado"
+                className="w-12"
+              />
+              <label htmlFor="estado" className="text-900 font-medium">
+                Estado de Origem
+              </label>
+            </FloatLabel>
+
+            <FloatLabel className="w-12">
+              <Dropdown
+                id="cidade"
+                value={cidadeSelected}
+                onChange={(e) => {
+                  return setCidadeSelected(e.value);
+                }}
+                options={cidades}
+                optionLabel="name"
+                placeholder="Selecione uma cidade"
+                className="w-12"
+              />
+              <label htmlFor="cidade" className="text-900 font-medium">
+                Cidade de Origem
+              </label>
+            </FloatLabel>
+          </div>
 
           <div className="flex align-items-center justify-content-between mb-6">
             <div className="flex align-items-center"></div>
