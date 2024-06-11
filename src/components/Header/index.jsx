@@ -61,7 +61,7 @@ const Header = () => {
     {
       label: "Informações",
       icon: "pi pi-info-circle",
-      url: "/informações",
+      url: "/informacoes",
     },
   ]
 
