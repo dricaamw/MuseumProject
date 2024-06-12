@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const MenuBarContainer = styled.header`
   & div.p-menubar {
@@ -22,7 +22,7 @@ const MenuBarContainer = styled.header`
     z-index: 1;
   }
 
-  & Button {
+  /* & Button {
     color: #ffffffb2;
     font-size: 12px;
     margin-right: 30px;
@@ -34,43 +34,57 @@ const MenuBarContainer = styled.header`
     position: relative;
     left: 1150px;
     bottom: 110px;    
-  }
-  & Button:active{
+  } */
+  /* & Button:active{
       border-color: transparent;
-    }
+    } */
+  Button {
+    color: #ffffffb2;
+    font-size: 12px;
+    background-color: #80808043;
+  }
 `;
 
 const Header = () => {
-
   const itens = [
     {
-      label: 'Home',
-      icon: 'pi pi-home',
-      url: '/'
+      label: "Home",
+      icon: "pi pi-home",
+      command: () => paraOnde(""),
     },
     {
       label: "Cadastro",
       icon: "pi pi-user-plus",
-      url: "/cadastro",
+      command: () => paraOnde("cadastro"),
     },
     {
       label: "Ingressos",
       icon: "pi pi-ticket",
-      url: "/ingressos",
+      command: () => paraOnde("ingressos"),
     },
     {
       label: "Informações",
       icon: "pi pi-info-circle",
-      url: "/informacoes",
+      command: () => paraOnde("informacoes"),
     },
-  ]
+  ];
+  
+    const navigate = useNavigate();
+    const paraOnde = (caminho) => navigate(`/${caminho}`);
 
-const start = <a href="/"><img alt="logo" src="../images/logoMuseu.png" width={300} /> </a>
+  const start = (
+    <Link to="/">
+      <img alt="logo" src="../images/logoMuseu.png" className="w-19rem mt-1" />
+    </Link>
+  );
 
   return (
     <MenuBarContainer>
-      <img src="../images/logoMuseu.png" alt="Logo" width={300} />
-      <Menubar className="flex justify-content-around p-6 m-0" model={itens} />
+      <Menubar
+        className="flex justify-content-around m-0"
+        model={itens}
+        start={start}
+      />
       <Link to="/login">
         <Button label="Login" />
       </Link>
