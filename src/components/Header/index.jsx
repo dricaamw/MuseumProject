@@ -8,12 +8,8 @@ const MenuBarContainer = styled.header`
     background-color: #0000009e;
     border: 0;
     border-radius: 0;
-    width: 100vw;
     font-size: 18px;
     font-weight: bold;
-    position: absolute;
-    top: 0;
-    z-index: 0;
   }
   & img {
     position: relative;
@@ -22,22 +18,6 @@ const MenuBarContainer = styled.header`
     z-index: 1;
   }
 
-  /* & Button {
-    color: #ffffffb2;
-    font-size: 12px;
-    margin-right: 30px;
-    margin-left: 0px;
-    text-decoration: none;
-    background-color: #80808043;
-    border: 0;
-    border-radius: 0;
-    position: relative;
-    left: 1150px;
-    bottom: 110px;    
-  } */
-  /* & Button:active{
-      border-color: transparent;
-    } */
   Button {
     color: #ffffffb2;
     font-size: 12px;
