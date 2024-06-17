@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FloatLabel } from "primereact/floatlabel";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
+import { InputMask } from 'primereact/inputmask';
 import {
   locale,
   addLocale,
@@ -74,6 +75,8 @@ const Cadastro = () => {
     { name: "Prefiro não Informar", code: "PNIN" },
   ];
 
+  const [cpfValue, setCpfValue] = useState();
+
   const [estados, setEstados] = useState([]);
   const getEstado = async () => {
     const response = await axios.get(
@@ -125,7 +128,7 @@ const Cadastro = () => {
             Já tem um cadastro?
           </span>
           <a
-            href="ingresso"
+            href="ingressos"
             className="font-medium no-underline ml-2 text-blue-500 cursor-pointer "
           >
             Retire seu ingresso!
@@ -168,7 +171,7 @@ const Cadastro = () => {
                 options={genders}
                 optionLabel="name"
                 placeholder="Selecione um Gênero"
-                className="w-auto"
+                className="w-full"
               />
               <label htmlFor="st-gender" className="text-900 font-medium">
                 Gênero
@@ -185,7 +188,7 @@ const Cadastro = () => {
                 placeholder="Quando você nasceu?"
                 showButtonBar
                 showIcon
-                className="w-auto"
+                className="w-full"
               />
               <label htmlFor="dataNascimento" className="text-900 font-medium">
                 Nascimento
@@ -193,13 +196,13 @@ const Cadastro = () => {
             </FloatLabel>
 
             <FloatLabel className="w-7">
-              <InputText
+              <InputMask
                 id="cpf"
-                type="text"
-                placeholder="Insira seu CPF"
-                className="w-12"
+                mask= "999 . 999 . 999 - 99"
+                slotChar="___ . ___ . ___ - __"
+                className="w-full"
               />
-              <label htmlFor="job" className="text-900 font-medium">
+              <label htmlFor="cpf" className="text-900 font-medium">
                 CPF
               </label>
             </FloatLabel>
@@ -216,7 +219,7 @@ const Cadastro = () => {
                 options={estados}
                 optionLabel="name"
                 placeholder="Selecione um Estado"
-                className="w-12"
+                className="w-full"
               />
               <label htmlFor="estado" className="text-900 font-medium">
                 Estado de Origem
@@ -227,13 +230,11 @@ const Cadastro = () => {
               <Dropdown
                 id="cidade"
                 value={cidadeSelected}
-                onChange={(e) => {
-                  return setCidadeSelected(e.value);
-                }}
+                onChange={(e) => setCidadeSelected(e.value)}
                 options={cidades}
                 optionLabel="name"
                 placeholder="Selecione uma cidade"
-                className="w-12"
+                className="w-full"
               />
               <label htmlFor="cidade" className="text-900 font-medium">
                 Cidade de Origem
@@ -248,7 +249,7 @@ const Cadastro = () => {
             </a>
           </div>
 
-          <Button label="Sign In" icon="pi pi-user" className="w-full" />
+          <Button label="Cadastre-se" icon="pi pi-user" className="w-full" />
         </div>
       </div>
     </FormContainer>
