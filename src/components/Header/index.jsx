@@ -11,12 +11,6 @@ const MenuBarContainer = styled.header`
     font-size: 18px;
     font-weight: bold;
   }
-  & img {
-    position: relative;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1;
-  }
 
   Button {
     color: #ffffffb2;
@@ -54,7 +48,7 @@ const Header = () => {
 
   const start = (
     <Link to="/">
-      <img alt="logo" src="../images/logoMuseu.png" className="w-19rem mt-1" />
+      <img alt="logo" src="../images/logoMuseu.png" className="w-19rem" />
     </Link>
   );
 
