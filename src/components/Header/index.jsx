@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 import { Link, useNavigate } from "react-router-dom";
 
 const MenuBarContainer = styled.header`
+
   & div.p-menubar {
     background-color: #0000009e;
     border: 0;
